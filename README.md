@@ -5,8 +5,7 @@ small amount of vanilla JavaScript. No frameworks, no build step.
 
 ## Live
 
-- https://vanshsingh.dev (custom domain)
-- GitHub Pages: https://vansh4195.github.io/vanshsingh-portfolio/
+- https://vansh4195.github.io/vanshsingh-portfolio/
 
 ## Run locally
 
@@ -21,11 +20,10 @@ python3 -m http.server 8000
 
 ```
 index.html    markup + content
-styles.css    styling, layout, responsive + light-mode
-main.js       scroll-reveal + sticky-nav (progressive enhancement)
+styles.css    Cortyx design system — palette, glass, motion, responsive
+main.js       collapsing pill nav, scroll-reveal, card glow (progressive enhancement)
 favicon.svg   favicon
 og.svg        Open Graph / social preview image
-CNAME         custom domain for GitHub Pages
 ```
 
 ## Editing content

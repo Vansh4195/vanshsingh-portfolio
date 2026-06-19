@@ -1,34 +1,53 @@
-// Subtle scroll-reveal + sticky-nav border. No dependencies, no bloat.
+/* Vansh Singh — portfolio
+   Progressive enhancement only: collapsing pill nav, scroll-reveal,
+   cursor-tracked card glow, footer year. No dependencies, no build step. */
 (function () {
   'use strict';
 
-  // current year in footer
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Footer year
   var yr = document.getElementById('year');
   if (yr) yr.textContent = new Date().getFullYear();
 
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // add a border to the top bar once the page scrolls
-  var topbar = document.querySelector('.topbar');
+  // Signature effect #5 — collapse the nav into a floating pill after ~8px
+  var topbar = document.getElementById('topbar');
   if (topbar) {
-    var onScroll = function () {
+    var ticking = false;
+    var sync = function () {
       topbar.classList.toggle('scrolled', window.scrollY > 8);
+      ticking = false;
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+    window.addEventListener('scroll', function () {
+      if (!ticking) { window.requestAnimationFrame(sync); ticking = true; }
+    }, { passive: true });
+    sync();
   }
 
-  // reveal section content as it enters the viewport
-  if (!reduce && 'IntersectionObserver' in window) {
-    var targets = document.querySelectorAll('.section .container > *, .reveal');
+  // Scroll-reveal
+  var reveals = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  } else {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) {
-          e.target.classList.add('in-view');
+          e.target.classList.add('in');
           io.unobserve(e.target);
         }
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    targets.forEach(function (t) { io.observe(t); });
+    reveals.forEach(function (el) { io.observe(el); });
+  }
+
+  // Cursor-tracked glow on project cards
+  if (!reduce && window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.card').forEach(function (card) {
+      card.addEventListener('pointermove', function (ev) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (ev.clientY - r.top) + 'px');
+      });
+    });
   }
 })();
