@@ -251,6 +251,12 @@ img, svg { max-width: 100%; display: block; }
   border-radius: 4px;
   vertical-align: middle;
 }
+/* Quiet status tag (outlined) — e.g. private/proprietary repos with no link */
+.tag--muted {
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line);
+}
 
 /* ---------- Featured platform ---------- */
 .featured__lede {
@@ -336,6 +342,14 @@ img, svg { max-width: 100%; display: block; }
   font-family: var(--serif);
   font-size: clamp(24px, 3.4vw, 32px);
   margin-bottom: 10px;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.project__name .tag--muted {
+  font-size: 10px;
+  transform: translateY(-3px);
 }
 .project__desc {
   color: var(--ink-soft);
@@ -370,6 +384,8 @@ img, svg { max-width: 100%; display: block; }
   background: var(--line);
   border: 1px solid var(--line);
 }
+/* 10 cards: keep rows even and links bottom-aligned across each row */
+.oss-card { min-height: 100%; }
 .oss-card {
   display: flex;
   flex-direction: column;
