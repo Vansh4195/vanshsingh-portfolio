@@ -1,15 +1,18 @@
-# vanshsingh.dev
+# Vansh Singh — Portfolio
 
-My personal portfolio. A fast, single-page static site — semantic HTML, modern CSS, and a
-small amount of vanilla JavaScript. No frameworks, no build step.
+My personal portfolio site. A single static page: semantic HTML, modern CSS, and a
+small amount of vanilla JavaScript. No frameworks, no build step, no dependencies.
+
+The design is deliberately monochrome — black and white only, editorial minimalism
+with strong typographic hierarchy and a lot of whitespace.
 
 ## Live
 
-- https://vansh4195.github.io/vanshsingh-portfolio/
+https://vansh4195.github.io/vanshsingh-portfolio/
 
 ## Run locally
 
-It's a static site, so just open `index.html` — or serve the folder:
+It's a static site, so you can open `index.html` directly, or serve the folder:
 
 ```bash
 python3 -m http.server 8000
@@ -19,12 +22,20 @@ python3 -m http.server 8000
 ## Structure
 
 ```
-index.html    markup + content
-styles.css    Cortyx design system — palette, glass, motion, responsive
-main.js       collapsing pill nav, scroll-reveal, card glow (progressive enhancement)
+index.html    markup + content (semantic landmarks, full meta, JSON-LD)
+styles.css    grayscale design system — type scale, layout, subtle motion, responsive
+main.js       scroll-reveal, sticky-header hairline, footer year (progressive enhancement)
 favicon.svg   favicon
 og.svg        Open Graph / social preview image
 ```
+
+## Notes
+
+- Fully responsive and keyboard accessible — skip link, ARIA labels, semantic
+  landmarks, visible focus styles.
+- Honors `prefers-reduced-motion`: all animation is disabled when the OS requests it,
+  and the JavaScript is purely an enhancement (the page reads fine with JS off).
+- Total payload is well under 50KB (excluding webfonts).
 
 ## Editing content
 

@@ -1,53 +1,44 @@
 /* Vansh Singh — portfolio
-   Progressive enhancement only: collapsing pill nav, scroll-reveal,
-   cursor-tracked card glow, footer year. No dependencies, no build step. */
+   Progressive enhancement only: scroll-reveal, sticky-header hairline,
+   footer year. No dependencies, no build step. */
+
 (function () {
-  'use strict';
+  "use strict";
 
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* Current year in footer */
+  var yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
-  // Footer year
-  var yr = document.getElementById('year');
-  if (yr) yr.textContent = new Date().getFullYear();
+  var reduceMotion = window.matchMedia &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // Signature effect #5 — collapse the nav into a floating pill after ~8px
-  var topbar = document.getElementById('topbar');
-  if (topbar) {
-    var ticking = false;
-    var sync = function () {
-      topbar.classList.toggle('scrolled', window.scrollY > 8);
-      ticking = false;
-    };
-    window.addEventListener('scroll', function () {
-      if (!ticking) { window.requestAnimationFrame(sync); ticking = true; }
-    }, { passive: true });
-    sync();
-  }
+  /* Scroll-reveal: fade/translate elements into view once.
+     If motion is reduced or IntersectionObserver is missing, show everything. */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
 
-  // Scroll-reveal
-  var reveals = document.querySelectorAll('.reveal');
-  if (reduce || !('IntersectionObserver' in window)) {
-    reveals.forEach(function (el) { el.classList.add('in'); });
+  if (reduceMotion || !("IntersectionObserver" in window)) {
+    revealEls.forEach(function (el) { el.classList.add("is-visible"); });
   } else {
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          e.target.classList.add('in');
-          io.unobserve(e.target);
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    reveals.forEach(function (el) { io.observe(el); });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+
+    revealEls.forEach(function (el) { io.observe(el); });
   }
 
-  // Cursor-tracked glow on project cards
-  if (!reduce && window.matchMedia('(hover: hover)').matches) {
-    document.querySelectorAll('.card').forEach(function (card) {
-      card.addEventListener('pointermove', function (ev) {
-        var r = card.getBoundingClientRect();
-        card.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
-        card.style.setProperty('--my', (ev.clientY - r.top) + 'px');
-      });
-    });
+  /* Sticky header gains a hairline border once the page scrolls. */
+  var header = document.querySelector(".site-header");
+  if (header) {
+    var onScroll = function () {
+      if (window.scrollY > 8) header.classList.add("is-scrolled");
+      else header.classList.remove("is-scrolled");
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
   }
 })();
