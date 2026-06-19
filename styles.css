@@ -362,6 +362,105 @@ img, svg { max-width: 100%; display: block; }
   .project__index { padding-top: 0; }
 }
 
+/* ---------- Open Source ---------- */
+.oss {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.oss-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  padding: 30px 28px;
+  transition: background 0.22s var(--ease);
+}
+.oss-card:hover { background: var(--surface); }
+.oss-card__name {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3vw, 28px);
+  margin-bottom: 12px;
+}
+.oss-card__desc {
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+.oss-card__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.oss-card__stack li {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: 4px;
+  padding: 4px 10px;
+}
+.oss-card:hover .oss-card__stack li { background: var(--paper); }
+.oss-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: auto;
+}
+.oss-card__links a {
+  font-family: var(--mono);
+  font-size: 13px;
+  text-decoration: none;
+  color: var(--ink);
+  position: relative;
+  padding-bottom: 2px;
+}
+.oss-card__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background: var(--line);
+  transition: background 0.2s var(--ease);
+}
+.oss-card__links a:hover,
+.oss-card__links a:focus-visible { color: var(--ink); }
+.oss-card__links a:hover::after { background: var(--ink); }
+
+.oss__all {
+  margin-top: 36px;
+  font-family: var(--mono);
+  font-size: 14px;
+}
+.oss__all a {
+  text-decoration: none;
+  color: var(--ink);
+  position: relative;
+  padding-bottom: 2px;
+}
+.oss__all a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 0;
+  background: var(--ink);
+  transition: width 0.25s var(--ease);
+}
+.oss__all a:hover::after,
+.oss__all a:focus-visible::after { width: 100%; }
+
+@media (max-width: 640px) {
+  .oss { grid-template-columns: 1fr; }
+}
+
 /* ---------- Experience timeline ---------- */
 .timeline { border-top: 1px solid var(--line); }
 .entry {
