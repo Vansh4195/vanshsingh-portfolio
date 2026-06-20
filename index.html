@@ -523,6 +523,44 @@
         <h2 class="section__title contact__title" id="contact-title">
           Building something autonomous? Let&rsquo;s talk.
         </h2>
+        <p class="contact__lede">
+          Get in touch — drop a note below and I&rsquo;ll get back to you.
+        </p>
+
+        <form class="contact-form" id="contact-form" novalidate>
+          <!-- Get a free key at https://web3forms.com (enter your email, key arrives by email), then replace WEB3FORMS_ACCESS_KEY_PLACEHOLDER -->
+          <input type="hidden" name="access_key" value="WEB3FORMS_ACCESS_KEY_PLACEHOLDER" />
+          <input type="hidden" name="subject" value="New message from portfolio" />
+          <input type="hidden" name="from_name" value="Portfolio Contact Form" />
+          <!-- Honeypot field: bots fill it, humans never see it -->
+          <input type="checkbox" name="botcheck" class="contact-form__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+          <div class="contact-form__row">
+            <div class="contact-form__field">
+              <label class="contact-form__label" for="cf-name">Name</label>
+              <input class="contact-form__input" type="text" id="cf-name" name="name" autocomplete="name" required />
+            </div>
+            <div class="contact-form__field">
+              <label class="contact-form__label" for="cf-email">Email</label>
+              <input class="contact-form__input" type="email" id="cf-email" name="email" autocomplete="email" required />
+            </div>
+          </div>
+          <div class="contact-form__field">
+            <label class="contact-form__label" for="cf-message">Message</label>
+            <textarea class="contact-form__input contact-form__textarea" id="cf-message" name="message" rows="5" required></textarea>
+          </div>
+
+          <div class="contact-form__actions">
+            <button class="btn contact-form__submit" type="submit">Send message</button>
+            <p class="contact-form__status" id="contact-form-status" role="status" aria-live="polite" hidden></p>
+          </div>
+        </form>
+
+        <p class="contact__direct">
+          Or email me directly:
+          <a href="mailto:vsingh97@asu.edu">vsingh97@asu.edu</a>
+        </p>
+
         <ul class="contact__links" role="list">
           <li><a href="mailto:vsingh97@asu.edu">vsingh97@asu.edu</a></li>
           <li><a href="https://github.com/Vansh4195" rel="me noopener" target="_blank">GitHub</a></li>
