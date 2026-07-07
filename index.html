@@ -91,14 +91,24 @@
         <p class="hero__lede reveal">
           I design and build autonomous systems — multi-agent automation, voice
           agents, and content pipelines that run end-to-end without a human in the
-          loop. Currently founding <strong>Relayo</strong> in San Francisco.
+          loop. Shipped platforms behind <strong>350K+ subscribers and 150M+ views</strong>,
+          and production web apps end to end.
         </p>
+        <p class="hero__lede reveal">
+          Skimming? The work is in <a href="#platform">Projects</a>, the background in
+          <a href="#experience">Experience</a>, the tools in <a href="#skills">Skills</a>.
+        </p>
+        <div class="hero__meta reveal">
+          <span class="meta-item"><strong>Now</strong>&nbsp;— open to full-time software engineering roles</span>
+        </div>
         <div class="hero__meta reveal">
           <span class="meta-item">San Francisco, CA</span>
           <span class="meta-dot" aria-hidden="true">/</span>
-          <span class="meta-item">B.S. Computer Science, ASU</span>
+          <span class="meta-item">B.S. Computer Science, ASU &rsquo;26</span>
           <span class="meta-dot" aria-hidden="true">/</span>
           <span class="meta-item">GPA 4.0 / 4.0</span>
+          <span class="meta-dot" aria-hidden="true">/</span>
+          <span class="meta-item">India &rarr; Tempe &rarr; San Francisco</span>
         </div>
         <div class="hero__actions reveal">
           <a class="btn btn--primary" href="#platform">See the work</a>
@@ -412,13 +422,29 @@
 
         <ol class="timeline" role="list">
           <li class="entry reveal">
-            <p class="entry__when">2026 — Present</p>
+            <p class="entry__when">Oct 2025 — Present</p>
             <div class="entry__what">
-              <h3 class="entry__role">Founder &amp; Lead Engineer</h3>
+              <h3 class="entry__role">Founding Engineer &amp; Lead Engineer</h3>
               <p class="entry__org">Relayo</p>
               <p class="entry__detail">
-                Building an AI voice-automation platform for SMBs from the ground up —
-                product, infrastructure, and the agent stack.
+                Sole engineer on an AI voice-automation platform: real-time voice agents
+                (Twilio) that hold live phone conversations and take action via call-state
+                memory and event-driven triggers. Full stack — Next.js, Node.js, PostgreSQL.
+              </p>
+            </div>
+          </li>
+
+          <li class="entry reveal">
+            <p class="entry__when">Aug 2025 — May 2026</p>
+            <div class="entry__what">
+              <h3 class="entry__role">Software Engineer Intern</h3>
+              <p class="entry__org">FoxiPrint</p>
+              <p class="entry__detail">
+                Built the entire customer platform solo — React front end, Node +
+                Supabase (Postgres) back end, and a role-based admin dashboard with
+                enterprise security: 2FA, password-breach detection, rate limiting,
+                session timeout, login-activity tracking, audit logging, and
+                row-level security. Recognized by leadership as a standout contributor.
               </p>
             </div>
           </li>
@@ -528,12 +554,15 @@
         </p>
 
         <form class="contact-form" id="contact-form" novalidate>
-          <!-- Get a free key at https://web3forms.com (enter your email, key arrives by email), then replace WEB3FORMS_ACCESS_KEY_PLACEHOLDER -->
-          <input type="hidden" name="access_key" value="WEB3FORMS_ACCESS_KEY_PLACEHOLDER" />
-          <input type="hidden" name="subject" value="New message from portfolio" />
-          <input type="hidden" name="from_name" value="Portfolio Contact Form" />
+          <!-- Delivery via FormSubmit AJAX (no account/key): main.js POSTs to
+               formsubmit.co/ajax/vsingh97@asu.edu. _honey = honeypot, _captcha
+               off (honeypot + required fields cover the bot noise for a
+               portfolio-volume form). -->
+          <input type="hidden" name="_subject" value="New message from vanshsingh.pages.dev" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
           <!-- Honeypot field: bots fill it, humans never see it -->
-          <input type="checkbox" name="botcheck" class="contact-form__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <input type="text" name="_honey" class="contact-form__honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
           <div class="contact-form__row">
             <div class="contact-form__field">

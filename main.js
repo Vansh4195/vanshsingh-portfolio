@@ -42,12 +42,11 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
-  /* Contact form: POST to Web3Forms as JSON, show inline status, no navigation.
-     Until a real access key is pasted in (replacing the placeholder), the
-     submit is short-circuited and the visitor is pointed to the direct email. */
+  /* Contact form: POST to FormSubmit's AJAX endpoint (no account, no key —
+     delivery goes straight to the inbox after a one-time email activation).
+     Shows inline status, never navigates away. */
   var form = document.getElementById("contact-form");
   var statusEl = document.getElementById("contact-form-status");
-  var PLACEHOLDER = "WEB3FORMS_ACCESS_KEY_PLACEHOLDER";
 
   if (form && statusEl) {
     var setStatus = function (msg, kind) {
@@ -65,16 +64,6 @@
         return;
       }
 
-      var keyField = form.querySelector('input[name="access_key"]');
-      var key = keyField ? keyField.value.trim() : "";
-      if (!key || key === PLACEHOLDER) {
-        setStatus(
-          "Email isn't wired up yet — please email me directly at vsingh97@asu.edu.",
-          "is-error"
-        );
-        return;
-      }
-
       var submitBtn = form.querySelector('button[type="submit"]');
       var originalLabel = submitBtn ? submitBtn.textContent : "";
       if (submitBtn) {
@@ -85,7 +74,7 @@
 
       var data = Object.fromEntries(new FormData(form).entries());
 
-      fetch("https://api.web3forms.com/submit", {
+      fetch("https://formsubmit.co/ajax/vsingh97@asu.edu", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -95,7 +84,8 @@
       })
         .then(function (res) {
           return res.json().then(function (json) {
-            return { ok: res.ok && json.success, json: json };
+            // FormSubmit's ajax endpoint returns success as boolean or "true"
+            return { ok: res.ok && String(json.success) === "true", json: json };
           });
         })
         .then(function (result) {
